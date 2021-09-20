@@ -1,5 +1,6 @@
 package DAO;
 
+import entity.Account;
 import entity.MainFood;
 
 
@@ -141,4 +142,56 @@ public class FoodDAO {
         }
         return null;
     }
+    public Account login(String user, String pass){
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from account where user = ? and pass = ? ");
+            ps.setString(1,user);
+            ps.setString(2,pass);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5));
+
+
+
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+   /* public static List<Product> getFoodSellId(String id) {
+        List<Product> list = new ArrayList<>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from Product where sell_id =?");
+            ps.setString(1,id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6)
+                ));
+
+
+
+
+
+
+            }
+        } catch (Exception e) {
+
+        }
+        return list;
+    }*/
 }

@@ -68,6 +68,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success text-white " type="submit" style="background-color: #333333">Search</button>
                 </form>
+                <button id ="login">Login</button>
             </div>
         </div>
     </nav>
@@ -192,11 +193,76 @@
     </div>
     <!-- Copyright -->
 </footer>
+<!--Modal layout-->
+<div class="modal">
+    <div class="modal_overlay"></div>
+    <div class="modal_body">
 
+
+        <!-- <div class="modal_inner">-->
+        <!---Register-->
+        <!--   <div class="auth-form">
+               <div class="auth-form_container">
+               <div class="auth-form_header">
+                   <h3 class="auth-form_heading">Đăng kí</h3>
+                   <span class="auth-form_switch-btn">Đăng nhập</span>
+               </div>
+               <div class="auth-form_form">
+                   <div class="auth-form_group">
+                       <input type="text" class="auth-form_input" placeholder="Tên sử dụng">
+                   </div>
+                   <div class="auth-form_group">
+                       <input type="password" class="auth-form_input" placeholder="Mật khẩu">
+                   </div>
+                   <div class="auth-form_group">
+                       <input type="password" class="auth-form_input" placeholder="Nhập lại mật khẩu">
+                   </div>
+               </div>
+               <div class="auth-form_controls">
+                   <button class="btn auth-form_controls_back">Trở lại</button>
+                   <button class="btn btn_primary">Đăng Kí</button>
+
+               </div>
+               </div>
+           </div>
+
+   </div>-->
+        <!--Het singin-->
+
+        <div class="auth-form">
+            <div class="auth-form_container">
+                <div class="auth-form_header">
+                    <h3 class="auth-form_heading">Đăng Nhập</h3>
+                    <span class="auth-form_switch-btn">Đăng Kí</span>
+                </div>
+                <form method="post">
+                    <div class="auth-form_form">
+                        <div class="auth-form_group">
+                            <p class="text-danger">${message}</p>
+                            <input type="text" class="auth-form_input" placeholder="Tên sử dụng" name="user">
+                        </div>
+                        <div class="auth-form_group">
+                            <input type="password" class="auth-form_input" placeholder="Mật khẩu" name="password">
+                        </div>
+
+                    </div>
+                    <div class="auth-form_controls">
+                        <button class="btn auth-form_controls_back" >Trở lại</button>
+                        <button class="btn btn_primary" type="submit">Đăng Nhập</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!---login-->
+    </div>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script src="js/base.js"></script>
 
 </body>
 </html>
