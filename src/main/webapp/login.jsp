@@ -113,17 +113,19 @@
         <p style="color: red;">${errorString}</p>
         <label>
             <span>Name</span>
-            <input type="text" name="user" placeholder="Username" required="" autofocus="">
+            <input type="text" name="user" placeholder="Username" >
         </label>
         <label>
             <span>Password</span>
-            <input type="password" name="pass" placeholder="Password" required="">
+            <input type="password" name="pass" placeholder="Password">
         </label>
         <p class="forgot-pass">Forgot password?</p>
        <!-- <button type="submit" value="submit">Sign In</button>-->
+       <button class="btn auth-form_controls_back" >Trở lại</button>
         <button class="btn btn_primary" type="submit" value="submit">Đăng Nhập</button>
 
     </div>
+    </form>
     <div class="sub-cont">
         <div class="img">
             <div class="img__text m--up">
@@ -140,22 +142,31 @@
                 <span class="m--in">Sign In</span>
             </div>
         </div>
+        <form action="signup" method="post">
         <div class="form sign-up">
             <h2>Create your Account</h2>
+            <p style="color: red;">${errorString}</p>
             <label>
                 <span>Name</span>
-                <input type="text" name="user" placeholder="Username" required="" autofocus="" >
+                <input type="text" name="user" placeholder="Username">
             </label>
 
             <label>
                 <span>Password</span>
-                <input type="password" name="pass" placeholder="Password" required="">
+                <input type="password" name="pass" placeholder="Password">
             </label>
+            <label>
+                <span>Repeat Password</span>
+                <input type="password" name="repass" placeholder="RePassword">
+            </label>
+
+           <button class="btn auth-form_controls_back" >Trở lại</button>
             <button class="btn btn_primary" type="submit" value="submit">Đăng Kí</button>
 
         </div>
-    </div>
+
     </form>
+    </div>
 </div>
 
 <script>

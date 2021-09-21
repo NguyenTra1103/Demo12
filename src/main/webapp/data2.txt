@@ -1,23 +1,6 @@
 use mainfood;
-create table Users  (
-                       uid int not null PRIMARY KEY AUTO_INCREMENT,
-                       name nvarchar (255),
-                       password nvarchar (255),
-                       email nvarchar (255),
-                       isSell int,
-                       isAdmin int
-);
-drop table Users;
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Nguyễn Ngọc Minh','123','ngocminh@gmail.com',1,1);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Lê Anh','145','leanh@gmail.com',0,1);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Tuấn Dương','567','td@gmail.com',1,0);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Phạm Hải','345','phamhai@gmail.com',1,0);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Trương Mai','789','truongmai@gmail.com',0,1);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Vũ Minh','015','vuminh@gmail.com',1,1);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Hoàng Hà','754','hahoang@gmail.com',0,1);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Nguyễn Minh','753','minhnguyen@gmail.com',1,0);
-insert into Users (name, password, email, isSell, isAdmin) VALUE ('Nguyễn Hải','256','nguyenhai@gmail.com',1,0);
-create table Product(
+
+create table mainFood(
 
         id int not null PRIMARY KEY AUTO_INCREMENT,
         name nvarchar (255),
@@ -29,13 +12,13 @@ create table Product(
         sell_id int
 
 );
-drop table Product;
-insert into Product (name, img, price, title, typeProduct, sell_id) value ('Bánh canh','https://upload.wikimedia.org/wikipedia/commons/c/c4/Banh-Canh-Noodle-Soup.jpg','30000VNĐ/Tô','Món ăn Miền Nam được làm từ bột gạo,mì hoặc sắn với nước dùng nấu từ tôm,cá,..','Loại mì',1);
-insert into Product (name, img, price, title, typeProduct, sell_id) value ('Bánh đa cua','https://upload.wikimedia.org/wikipedia/commons/8/81/BANH_DA_CUA_1.jpg','30000VNĐ/Tô','Món ăn Hải Phòng,Bánh đa với nước dùng riêu cua','Bánh đa nước',1);
-insert into Product (name, img, price, title, typeProduct, sell_id) value ('Bún bò Huế','https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bun-Bo-Hue-from-Huong-Giang-2011.jpg/1280px-Bun-Bo-Hue-from-Huong-Giang-2011.jpg','30000VNĐ/Tô','Bún đặc sản của xứ Huế,trong nước dùng có một ít mắm ruốc,góp phần làm nên hương vị rất riêng','Loại Bún nước',2);
-insert into Product (name, img, price, title, typeProduct, sell_id) value ('Bún cá','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/B%C3%BAn_C%C3%A1_H%C3%A0_N%E1%BB%99i.jpg/1280px-B%C3%BAn_C%C3%A1_H%C3%A0_N%E1%BB%99i.jpg','35000VNĐ/Tô','Món ăn Hà Nội, Bún và chả cá nướng trộn nước mắm, rau sống','Bún nước',3);
-insert into Product (name, img, price, title, typeProduct, sell_id) value ('Bún chả','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/B%C3%BAn_ch%E1%BA%A3_H%C3%A0ng_M%C3%A0nh.jpg/1280px-B%C3%BAn_ch%E1%BA%A3_H%C3%A0ng_M%C3%A0nh.jpg','30000VNĐ/Tô','Món ăn hà Nội, Bún ăn kèm chả viên và chả miếng với nước chấm','Bún nước',4);
-insert into Product (name, img, price, title, typeProduct, sell_id) value ('Bún Chạo Tôm','https://upload.wikimedia.org/wikipedia/commons/d/d6/Bun-Chao-Tom-2008.jpg','30000VNĐ/Tô','Món ăn Huế, Tôm xiên vào que mía nướng ăn kèm bún, rau sống','Bún khô',5);
+drop table mainFood;
+insert into mainFood (name, img, price, title, typeProduct, sell_id) value ('Bánh canh','https://upload.wikimedia.org/wikipedia/commons/c/c4/Banh-Canh-Noodle-Soup.jpg','30000VNĐ/Tô','Món ăn Miền Nam được làm từ bột gạo,mì hoặc sắn với nước dùng nấu từ tôm,cá,..','Loại mì',1);
+insert into mainFood (name, img, price, title, typeProduct, sell_id) value ('Bánh đa cua','https://upload.wikimedia.org/wikipedia/commons/8/81/BANH_DA_CUA_1.jpg','30000VNĐ/Tô','Món ăn Hải Phòng,Bánh đa với nước dùng riêu cua','Bánh đa nước',1);
+insert into mainFood (name, img, price, title, typeProduct, sell_id) value ('Bún bò Huế','https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bun-Bo-Hue-from-Huong-Giang-2011.jpg/1280px-Bun-Bo-Hue-from-Huong-Giang-2011.jpg','30000VNĐ/Tô','Bún đặc sản của xứ Huế,trong nước dùng có một ít mắm ruốc,góp phần làm nên hương vị rất riêng','Loại Bún nước',2);
+insert into mainFood (name, img, price, title, typeProduct, sell_id) value ('Bún cá','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/B%C3%BAn_C%C3%A1_H%C3%A0_N%E1%BB%99i.jpg/1280px-B%C3%BAn_C%C3%A1_H%C3%A0_N%E1%BB%99i.jpg','35000VNĐ/Tô','Món ăn Hà Nội, Bún và chả cá nướng trộn nước mắm, rau sống','Bún nước',3);
+insert into mainFood (name, img, price, title, typeProduct, sell_id) value ('Bún chả','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/B%C3%BAn_ch%E1%BA%A3_H%C3%A0ng_M%C3%A0nh.jpg/1280px-B%C3%BAn_ch%E1%BA%A3_H%C3%A0ng_M%C3%A0nh.jpg','30000VNĐ/Tô','Món ăn hà Nội, Bún ăn kèm chả viên và chả miếng với nước chấm','Bún nước',4);
+insert into mainFood (name, img, price, title, typeProduct, sell_id) value ('Bún Chạo Tôm','https://upload.wikimedia.org/wikipedia/commons/d/d6/Bun-Chao-Tom-2008.jpg','30000VNĐ/Tô','Món ăn Huế, Tôm xiên vào que mía nướng ăn kèm bún, rau sống','Bún khô',5);
 create table account(
     uid int not null PRIMARY KEY AUTO_INCREMENT,
     user nvarchar(255),

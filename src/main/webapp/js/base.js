@@ -1,4 +1,4 @@
-document.getElementById("login").addEventListener("click", myFunction);
+document.getElementById("addProduct").addEventListener("click", myFunction);
 
 function myFunction() {
      var btnmodal = document.querySelector('.modal ');

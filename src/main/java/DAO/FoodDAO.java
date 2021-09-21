@@ -1,13 +1,11 @@
 package DAO;
 
 import entity.Account;
-import entity.MainFood;
+
+import entity.Product;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class FoodDAO {
         return con;
     }
 
-    public static int save(MainFood u) {
+    public static int save(Product u) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -43,7 +41,7 @@ public class FoodDAO {
         return status;
     }
 
-    public static int update(MainFood u) {
+    public static int update(Product u) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -61,7 +59,7 @@ public class FoodDAO {
         return status;
     }
 
-    public static int delete(MainFood u) {
+    public static int delete(Product u) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -75,15 +73,15 @@ public class FoodDAO {
         return status;
     }
 
-    public static List<MainFood> getAllRecords() {
-        List<MainFood> list = new ArrayList<MainFood>();
+    public static List<Product> getAllRecords() {
+        List<Product> list = new ArrayList<Product>();
 
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement("select * from mainFood");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                MainFood u = new MainFood();
+                Product u = new Product();
                 u.setId(rs.getInt("id"));
                 u.setImg(rs.getString("img"));
                 u.setName(rs.getString("name"));
@@ -98,15 +96,15 @@ public class FoodDAO {
         return list;
     }
 
-    public static MainFood getRecordById(int id) {
-        MainFood u = null;
+    public static Product getRecordById(int id) {
+        Product u = null;
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement("select * from mainFood where id=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                u = new MainFood();
+                u = new Product();
                 u.setId(rs.getInt("id"));
                 u.setImg(rs.getString("img"));
                 u.setName(rs.getString("name"));
@@ -121,7 +119,7 @@ public class FoodDAO {
     }
 
 
-    public MainFood getFoodById( String id) {
+    public Product getFoodById( String id) {
 
         try {
             Connection con = getConnection();
@@ -129,7 +127,7 @@ public class FoodDAO {
             ps.setString(1,id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                return new MainFood( rs.getInt(1),
+                return new Product( rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -165,19 +163,55 @@ public class FoodDAO {
         }
         return null;
     }
-   /* public static List<Product> getFoodSellId(String id) {
+    public Account checkAccountExist(String user){
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from account where user = ?");
+            ps.setString(1,user);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5));
+
+
+
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+    public void signUp(String user, String pass){
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("insert into account (user,pass,isSell,isAdmin) values(?,?,0,0)");
+            ps.setString(1,user);
+            ps.setString(2,pass);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+
+    }
+    public static List<Product> getFoodSellId(int id) {
         List<Product> list = new ArrayList<>();
 
         try {
             Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement("select * from Product where sell_id =?");
-            ps.setString(1,id);
+            PreparedStatement ps = con.prepareStatement("select * from mainFood where sell_id =?");
+            ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(rs.getInt(1),
-                        rs.getInt(2),
+                        rs.getString(2),
                         rs.getString(3),
-                        rs.getString(3),
+
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6)
@@ -193,5 +227,19 @@ public class FoodDAO {
 
         }
         return list;
-    }*/
+    }
+    public void deleteProduct(String pid){
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("delete from mainFood where id=?");
+            ps.setString(1,pid);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            //System.out.println(e);
+        }
+
+
+    }
 }

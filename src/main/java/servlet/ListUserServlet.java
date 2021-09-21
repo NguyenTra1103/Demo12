@@ -2,8 +2,8 @@ package servlet;
 
 import DAO.FoodDAO;
 
-import entity.MainFood;
 
+import entity.Product;
 
 
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ public class ListUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         response.setContentType("text/html;charset=UTF-8");
         FoodDAO foodDAO = new FoodDAO();
-        List<MainFood> list = foodDAO.getAllRecords();
+        List<Product> list = foodDAO.getAllRecords();
         request.setAttribute("list",list);
         request.getRequestDispatcher("listuser.jsp").forward(request,response);
 
