@@ -47,12 +47,17 @@
                     <li class="nav-item">
                         <a class="nav-link active text-white" aria-current="page" href="/index">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/listFood">Xem Sản phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/addUser">Kênh người bán</a>
-                    </li>
+                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="">Manager Account</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.acc.isSell == 1}">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="managerProduct">Manager Product</a>
+                        </li>
+                    </c:if>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Các món ăn
@@ -72,7 +77,16 @@
                     <button class="btn btn-outline-success text-white " type="submit" style="background-color: #333333">Search</button>
                 </form>
                 <!-- <button id="login">Login</button>-->
-                <button><a href="login.jsp">Login</a></button>
+               <!-- <button><a href="login.jsp">Login</a></button>-->
+                <c:if test="${sessionScope.acc == null}">
+                    <button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="login.jsp">Login</a></span></button>
+
+                </c:if>
+
+                <c:if test="${sessionScope.acc != null}">
+                    <p>Hello ${sessionScope.acc.user}</p>
+                    <button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="logout">Logout</a></span></button>
+                </c:if>
 
             </div>
         </div>
