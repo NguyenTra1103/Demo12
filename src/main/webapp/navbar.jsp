@@ -32,7 +32,6 @@
     <title >VNFood</title>
 
 </head>
-<body>
 
 <header>
     <nav class="navbar navbar-expand-md " style="background-color: green;">
