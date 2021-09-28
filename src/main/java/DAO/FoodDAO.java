@@ -242,4 +242,39 @@ public class FoodDAO {
 
 
     }
+    public void insertProduct(String name, String image,String price, String title ,String typeProduct, int sid){
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("insert into mainFood(name,img,price,title,typeProduct,sell_id) values(?,?,?,?,?,?)");
+            ps.setString(1,name);
+            ps.setString(2,image);
+            ps.setString(3,price);
+            ps.setString(4,title);
+            ps.setString(5,typeProduct);
+            ps.setInt(6,sid);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+
+
+        }
+    }
+    public void editProduct(String name, String image, String price,String title, String typeProduct , String pid){
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("update mainFood set name=?,img=?,price =?,title=?,typeProduct=? where id=?");
+            ps.setString(1,name);
+            ps.setString(2,image);
+            ps.setString(3,price);
+            ps.setString(4,title);
+            ps.setString(5,typeProduct);
+            ps.setString(6,pid);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+
+
+        }
+    }
+
 }

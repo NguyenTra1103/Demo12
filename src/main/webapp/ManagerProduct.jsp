@@ -18,9 +18,14 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/base.css">
+   <!-- <link rel="stylesheet" href="css/base.css">-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"  src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
+
     <title>ListFood</title>
 
 </head>
@@ -68,13 +73,13 @@
                     <button class="btn btn-outline-success text-white " type="submit" style="background-color: #333333">Search</button>
                 </form>
                 <c:if test="${sessionScope.acc == null}">
-                    <button><a href="login.jsp">Login</a></button>
+                    <button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="login.jsp">Login</a></span></button>
 
                 </c:if>
 
                 <c:if test="${sessionScope.acc != null}">
                     <p>Hello ${sessionScope.acc.user}</p>
-                    <button><a href="logout">Logout</a></button>
+                    <button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="logout">Logout</a></span></button>
                 </c:if>
             </div>
         </div>
@@ -85,35 +90,74 @@
 <!--End header-->
 <main>
 
-   <!-- <h1>Users</h1>
-    <a href="/addUser">Add User</a>-->
-    <button id="addProduct">Thêm sản phẩm</button>
-    <button>Xoá sản phẩm</button>
-    <!--
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Img</th>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Price</th>
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add Product
+    </button>
 
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <c:forEach items="${list}" var="u">
-        <tr>
-            <td>${u.id}</td>
-            <td>${u.img}</td>
-            <td>${u.name}</td>
-            <td>${u.title}</td>
-            <td>${u.price}</td>
+    <!-- Modal -->
+    <form action="add" method="post">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<h5 class="modal-title" id="exampleModalLabel">Add Product</h5>-->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--Form-->
+                    <!--<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Tên người bán</span>
+        <input type="text" name = "name" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>-->
 
-            <td><a href="editUser?id=${u.id}">Edit</a></td>
-            <td><a href="deleteUser?id=${u.id}">Delete</a></td>
-        </tr>
-    </c:forEach>
-</table>-->
+    <!--<div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <span class="input-group-text" id="basic-addon2">@example.com</span>
+    </div>-->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon4">Tên sản phẩm</span>
+                        <input type="text" name="name" class="form-control" placeholder="FoodName" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <label for="basic-url" class="form-label">Link ảnh sản phẩm</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">https://example/food.png</span>
+                        <input type="text"  name = "image" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Giá bán VNĐ</span>
+                        <input type="text" name="price" class="form-control" aria-label="Amount (to the nearest VNĐ)">
+                        <span class="input-group-text">.00</span>
+                    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon5">Mô tả sản phẩm</span>
+        <input type="text" name="title" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+                    <div class="input-group">
+                        <span class="input-group-text">Chi tiết sản phẩm</span>
+                        <textarea class="form-control" aria-label="Description Food" name="typeProduct"></textarea>
+                    </div>
+
+
+
+
+
+                    <!--Ket thuc-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" value="Add" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+
+  <!--
     <table class="table table-dark table-striped">
         <thead>
         <tr>
@@ -130,20 +174,6 @@
         </thead>
         <tbody>
         <c:forEach items="${listP}" var="u">
-           <!--<tr>
-
-                <td>${u.id}</td>
-               <td> <img src="${u.img}" alt="" style="width: 200px;height: 200px"></td>
-                <td>${u.name}</td>
-                <td>${u.title}</td>
-               <td>${u.typeProduct}</td>
-                <td>${u.price}</td>
-
-
-                <td><a href="editUser?id=${u.id}">Edit</a></td>
-                <td><a href="deleteUser?id=${u.id}">Delete</a></td>
-
-            </tr>-->
             <tr>
                 <td><div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
@@ -169,89 +199,77 @@
         </c:forEach>
         </tbody>
 
+    </table>-->
+    <table id="example" class="display" style="width:100%">
+        <thead>
+        <tr>
+            <!--<th scope="col">Chọn</th>-->
+            <th scope="col">Id</th>
+
+            <th scope="col">Tên</th>
+            <th scope="col" style="width: 200px">Hình ảnh</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col">Chi tiết mô tả</th>
+            <th scope="col">Xoá</th>
+            <th scope="col">Sửa</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${listP}" var="u">
+            <tr>
+                <!--<td><div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked"></label></div></td>-->
+
+
+                <td>${u.id}</td>
+                <td>${u.name}</td>
+                <td> <img src="${u.img}" alt="" style="width: 200px;height: 200px"></td>
+                <td>${u.price}</td>
+                <td>${u.title}</td>
+                <td>${u.typeProduct}</td>
+
+
+
+               <td><a href="loadProduct?pid=${u.id}">Edit</a></td>
+                <!--Form edit-->
+
+
+
+                <td><a href="delete?pid=${u.id}">Delete</a></td>
+
+
+
+
+            </tr>
+
+        </c:forEach>
+        </tbody>
+        <tfoot>
+        <tr>
+        <!--<th scope="col">Chọn</th>-->
+         <th scope="col">Id</th>
+            <th scope="col">Tên</th>
+        <th scope="col" style="width: 200px">Hình ảnh</th>
+            <th scope="col">Giá</th>
+        <th scope="col">Mô tả</th>
+        <th scope="col">Chi tiết mô tả</th>
+            <th scope="col">Xoá</th>
+        <th scope="col">Sửa</th>
+        </tr>
+        </tfoot>
+
     </table>
-
-<div class="modal">
-    <div class="modal_overlay"></div>
-
-    <div class="modal_body">
-
-
-        <div class="modal_inner">
-        <!---Register-->
-
-                   <form action="add" method="post">
-               <!--<div class="auth-form_header">
-                   <h3 class="auth-form_heading">Đăng kí</h3>
-                   <span class="auth-form_switch-btn">Đăng nhập</span>
-               </div>
-               <div class="auth-form_form">
-                   <div class="auth-form_group">
-                       <input type="text" class="auth-form_input" placeholder="Tên sử dụng">
-                   </div>
-                   <div class="auth-form_group">
-                       <input type="password" class="auth-form_input" placeholder="Mật khẩu">
-                   </div>
-                   <div class="auth-form_group">
-                       <input type="password" class="auth-form_input" placeholder="Nhập lại mật khẩu">
-                   </div>
-               </div>
-               <div class="auth-form_controls">
-                   <button class="btn auth-form_controls_back">Trở lại</button>
-                   <button class="btn btn_primary">Đăng Kí</button>
-
-               </div>-->
-                   <div class="input-group mb-3">
-                       <span class="input-group-text" id="basic-addon1">Tên người bán</span>
-                       <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                   </div>
-
-                   <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                       <span class="input-group-text" id="basic-addon2">@example.com</span>
-                   </div>
-
-                   <label for="basic-url" class="form-label">Link ảnh sản phẩm</label>
-                   <div class="input-group mb-3">
-                       <span class="input-group-text" id="basic-addon3">https://example/food.png</span>
-                       <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                   </div>
-                   <div class="input-group mb-3">
-                       <span class="input-group-text" id="basic-addon4">Tên sản phẩm</span>
-                       <input type="text" class="form-control" placeholder="FoodName" aria-label="Username" aria-describedby="basic-addon1">
-                   </div>
-                   <div class="input-group mb-3">
-                       <span class="input-group-text" id="basic-addon5">Mô tả sản phẩm</span>
-                       <input type="text" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">
-                   </div>
-
-                   <div class="input-group mb-3">
-                       <span class="input-group-text">Giá bán VNĐ</span>
-                       <input type="text" class="form-control" aria-label="Amount (to the nearest VNĐ)">
-                       <span class="input-group-text">.00</span>
-                   </div>
-
-
-
-                   <div class="input-group">
-                       <span class="input-group-text">Chi tiết sản phẩm</span>
-                       <textarea class="form-control" aria-label="Description Food"></textarea>
-                   </div>
-                   <button class="btn btn_primary" type="submit" value="submit">AddProduct</button>
-                   <!--bang AddUser-->
-
-                   <!--<table style="display: flex;justify-content: center;margin-top: 9px">
-                       <tr>
-                           <td colspan="2" ><input type="submit" value="Add User"/></td>
-                       </tr>
-                   </table>-->
-                   </form>
-               </div>
-
-
-      </div>
-    </div>
+</div>
 </main>
-<script src="js/base.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
