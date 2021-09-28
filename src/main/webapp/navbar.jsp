@@ -29,7 +29,7 @@
     <script type="text/javascript" charset="utf8"  src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
 
 
-    <title >VNFood</title>
+    <title>VNFood</title>
 
 </head>
 
@@ -78,20 +78,23 @@
                 <!-- <button id="login">Login</button>-->
                <!-- <button><a href="login.jsp">Login</a></button>-->
                 <c:if test="${sessionScope.acc == null}">
-                    <button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="login.jsp">Login</a></span></button>
+                    <!--<button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="login.jsp">Login</a></span></button>-->
+                    <button class="btn btn-outline-success text-white" type="button" style="background-color: #333333; text-decoration: none"><span><a href="login.jsp" style="text-decoration: none; color: white">Login</a></span></button>
 
                 </c:if>
 
                 <c:if test="${sessionScope.acc != null}">
                     <p>Hello ${sessionScope.acc.user}</p>
-                    <button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="logout">Logout</a></span></button>
+                    <!--<button id="login" type="button" class="guest btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#modal-login"><span><a href="logout">Logout</a></span></button>-->
+                    <button class="btn btn-outline-success  text-white " type="button" style="background-color: #333333"><span><a href="logout" style="text-decoration: none; color: white">Login</a></span></button>
+
                 </c:if>
 
             </div>
         </div>
     </nav>
 
-    <img src="images/Products.png" class="d-block w-100" alt="..." style="height: 400px">
+
 </header>
 <body>
 
